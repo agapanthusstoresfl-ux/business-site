@@ -3,151 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MegaWin | Shop & Win</title>
+    <title>MegaWin | Exclusive Tesla Giveaways</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Smooth Fade-in Animation */
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         
-        /* Temu-style pulsing badge */
         .pulse-orange { animation: pulse 2s infinite; }
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.03); }
             100% { transform: scale(1); }
         }
     </style>
 </head>
-<body class="bg-gray-100 pb-24 font-sans">
+<body class="bg-gray-50 pb-24 font-sans">
 
     <nav class="sticky top-0 z-50 bg-white border-b px-4 py-3 shadow-sm">
         <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
             <h1 class="text-2xl font-black text-orange-600 italic tracking-tighter">MegaWin</h1>
-            <div class="flex-1 bg-gray-100 rounded-full py-2 px-4 flex items-center text-gray-400 text-sm">
-                <span>🔍 Search "Free iPhone"</span>
+            
+            <div class="hidden md:flex flex-1 bg-gray-100 rounded-full py-2 px-4 items-center text-gray-400 text-sm mx-4">
+                <span>🔍 Search "Tesla Model S Plaid"</span>
             </div>
-            <div class="text-gray-600 text-xl">🔔</div>
+
+            <div class="flex items-center gap-3">
+                <button class="text-sm font-bold text-gray-700 hover:text-orange-600 transition">Log In</button>
+                <button class="text-sm font-bold bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">Sign Up</button>
+            </div>
         </div>
     </nav>
 
-    <div class="bg-white px-4 py-4 flex gap-6 overflow-x-auto no-scrollbar border-b">
+    <div class="bg-white px-4 py-4 flex gap-8 overflow-x-auto no-scrollbar border-b">
         <div class="flex-shrink-0 flex flex-col items-center">
-            <div class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center text-2xl mb-1">🎁</div>
-            <span class="text-[10px] font-bold">Free Gifts</span>
+            <div class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center text-2xl mb-1">⚡</div>
+            <span class="text-[10px] font-bold uppercase">All Teslas</span>
         </div>
-        <div class="flex-shrink-0 flex flex-col items-center">
-            <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-2xl mb-1">💻</div>
-            <span class="text-[10px] font-bold">Tech</span>
+        <div class="flex-shrink-0 flex flex-col items-center opacity-50">
+            <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center text-2xl mb-1">🏎️</div>
+            <span class="text-[10px] font-bold uppercase">Model S</span>
         </div>
-        <div class="flex-shrink-0 flex flex-col items-center">
-            <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-2xl mb-1">👗</div>
-            <span class="text-[10px] font-bold">Fashion</span>
-        </div>
-        <div class="flex-shrink-0 flex flex-col items-center">
-            <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-2xl mb-1">🎮</div>
-            <span class="text-[10px] font-bold">Gaming</span>
-        </div>
-        <div class="flex-shrink-0 flex flex-col items-center">
-            <div class="w-14 h-14 bg-yellow-100 rounded-full flex items-center justify-center text-2xl mb-1">🏠</div>
-            <span class="text-[10px] font-bold">Home</span>
+        <div class="flex-shrink-0 flex flex-col items-center opacity-50">
+            <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center text-2xl mb-1">📐</div>
+            <span class="text-[10px] font-bold uppercase">Cybertruck</span>
         </div>
     </div>
 
-    <section class="reveal mt-4 px-4">
-        <div class="flex justify-between items-center mb-3">
-            <h2 class="text-lg font-bold flex items-center gap-2">⚡ Flash Deals <span class="text-orange-600 text-sm font-normal">Ends in 02:14:05</span></h2>
-            <a href="#" class="text-gray-400 text-xs">View all ></a>
-        </div>
-        <div class="flex gap-3 overflow-x-auto no-scrollbar">
-            <div class="min-w-[120px] bg-white rounded-lg p-2 shadow-sm border border-orange-100">
-                <div class="h-24 bg-gray-100 rounded mb-2 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200" class="w-full h-full object-cover">
-                </div>
-                <p class="text-orange-600 font-bold text-sm">$0.00</p>
-                <div class="w-full bg-gray-200 h-1.5 rounded-full mt-1">
-                    <div class="bg-orange-500 h-1.5 w-3/4 rounded-full"></div>
-                </div>
-                <p class="text-[9px] text-gray-400 mt-1">75% Claimed</p>
+    <main class="max-w-6xl mx-auto px-3 mt-6">
+        <h2 class="text-2xl font-black mb-6 px-1 text-gray-900 flex items-center gap-2">
+            Tesla Inventory <span class="text-xs bg-orange-600 text-white px-2 py-1 rounded-full">50 AVAILABLE</span>
+        </h2>
+        
+        <div id="tesla-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             </div>
-            <div class="min-w-[120px] bg-white rounded-lg p-2 shadow-sm border">
-                <div class="h-24 bg-gray-100 rounded mb-2 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200" class="w-full h-full object-cover">
-                </div>
-                <p class="text-orange-600 font-bold text-sm">$0.00</p>
-                <div class="w-full bg-gray-200 h-1.5 rounded-full mt-1">
-                    <div class="bg-orange-500 h-1.5 w-1/2 rounded-full"></div>
-                </div>
-                <p class="text-[9px] text-gray-400 mt-1">50% Claimed</p>
-            </div>
-        </div>
-    </section>
+    </main>
 
-    <section class="reveal mt-6 px-3">
-        <h2 class="text-xl font-black mb-4 px-1 text-gray-800">Recommended for You</h2>
-        <div class="grid grid-cols-2 gap-3">
-            
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
-                <div class="h-44 relative bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" class="w-full h-full object-cover">
-                    <div class="absolute bottom-2 left-2 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded-full">8.4k+ Reviews</div>
-                </div>
-                <div class="p-3">
-                    <p class="text-xs font-medium text-gray-700 line-clamp-2 mb-2">Wireless Noise Canceling Headphones - Premium Bass</p>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-lg font-bold text-orange-600">$0.00</span>
-                        <span class="text-[10px] text-gray-400 line-through">$89.00</span>
-                    </div>
-                    <div class="mt-2 bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-1 rounded inline-block">
-                        New User Gift
-                    </div>
-                    <button class="w-full mt-3 bg-orange-600 text-white py-2 rounded-lg font-bold text-xs uppercase shadow-md pulse-orange">Claim Free</button>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
-                <div class="h-44 relative bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1605898835373-02344bcc579d?w=400" class="w-full h-full object-cover">
-                    <div class="absolute bottom-2 left-2 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded-full">12k+ Entries</div>
-                </div>
-                <div class="p-3">
-                    <p class="text-xs font-medium text-gray-700 line-clamp-2 mb-2">PS5 Digital Edition Giveaway - Grand Prize Draw</p>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-lg font-bold text-orange-600">$0.00</span>
-                        <span class="text-[10px] text-gray-400 line-through">$499.00</span>
-                    </div>
-                    <div class="mt-2 bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded inline-block">
-                        Verified Draw
-                    </div>
-                    <button class="w-full mt-3 bg-blue-600 text-white py-2 rounded-lg font-bold text-xs uppercase shadow-md">Enter Now</button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <footer class="fixed bottom-0 left-0 right-0 bg-white border-t py-3 flex justify-around text-[10px] font-bold text-gray-500 shadow-lg z-50 max-w-6xl mx-auto">
+    <footer class="fixed bottom-0 left-0 right-0 bg-white border-t py-3 flex justify-around text-[10px] font-bold text-gray-500 shadow-lg z-50">
         <div class="text-orange-600 flex flex-col items-center">
             <span class="text-xl mb-1">🏠</span>
             <span>Home</span>
         </div>
         <div class="flex flex-col items-center">
-            <span class="text-xl mb-1">💎</span>
-            <span>Deals</span>
-        </div>
-        <div class="flex flex-col items-center">
-            <span class="text-xl mb-1">🎁</span>
-            <span>Cart</span>
+            <span class="text-xl mb-1">🔋</span>
+            <span>Chargers</span>
         </div>
         <div class="flex flex-col items-center">
             <span class="text-xl mb-1">👤</span>
-            <span>Me</span>
+            <span>Profile</span>
         </div>
     </footer>
 
     <script>
-        // Trigger animations when elements enter screen
+        const teslaImages = [
+            'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=500', // Model 3
+            'https://images.unsplash.com/photo-1617788138017-80ad40651399?w=500', // Model S
+            'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=500', // Model X
+            'https://images.unsplash.com/photo-1620891549027-942fdc95d3f5?w=500'  // Model Y
+        ];
+
+        const modelNames = ["Model S Plaid", "Cybertruck Dual Motor", "Model 3 Performance", "Model X Long Range", "Roadster Concept"];
+        const grid = document.getElementById('tesla-grid');
+
+        // Generate 50 items
+        for (let i = 1; i <= 50; i++) {
+            const randomImg = teslaImages[Math.floor(Math.random() * teslaImages.length)];
+            const randomModel = modelNames[Math.floor(Math.random() * modelNames.length)];
+            
+            const card = document.createElement('div');
+            card.className = "reveal bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow";
+            card.innerHTML = `
+                <div class="h-40 md:h-52 relative bg-gray-200">
+                    <img src="${randomImg}" class="w-full h-full object-cover" alt="Tesla">
+                    <div class="absolute top-2 right-2 bg-white/90 backdrop-blur text-[9px] font-black px-2 py-1 rounded text-orange-600">FREE</div>
+                </div>
+                <div class="p-4">
+                    <p class="text-sm font-bold text-gray-800 truncate">${randomModel} #${i}</p>
+                    <div class="flex items-baseline gap-2 mt-1">
+                        <span class="text-lg font-black text-orange-600">$0.00</span>
+                        <span class="text-[10px] text-gray-400 line-through">$89,990</span>
+                    </div>
+                    <div class="flex items-center gap-1 mt-2">
+                        <span class="text-yellow-400 text-xs">★★★★★</span>
+                        <span class="text-[9px] text-gray-400">(4.9)</span>
+                    </div>
+                    <button class="w-full mt-4 bg-orange-600 text-white py-2.5 rounded-xl font-black text-xs uppercase shadow-lg shadow-orange-200 pulse-orange">
+                        Claim This Tesla
+                    </button>
+                </div>
+            `;
+            grid.appendChild(card);
+        }
+
+        // Scroll Animation Logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
