@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MegaWin | Tesla Giveaway</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .pulse-orange { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 pb-24 font-sans">
+
+    <nav class="sticky top-0 z-50 bg-white border-b px-4 py-3 shadow-sm">
+        <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
+            <h1 class="text-2xl font-black text-orange-600 italic tracking-tighter">MegaWin</h1>
+            <div class="flex items-center gap-3">
+                <button class="text-sm font-bold text-gray-700 hover:text-orange-600 transition">Log In</button>
+                <button class="text-sm font-bold bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-3 mt-6">
+        <h2 class="text-2xl font-black mb-6 px-1 text-gray-900">Available Teslas</h2>
+        
+        <div id="tesla-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            </div>
+    </main>
+
+    <footer class="fixed bottom-0 left-0 right-0 bg-white border-t py-3 flex justify-around text-[10px] font-bold text-gray-400 shadow-lg z-50">
+        <div class="text-orange-600 flex flex-col items-center">
+            <span class="text-xl mb-1">🏠</span>
+            <span>Home</span>
+        </div>
+        <div class="flex flex-col items-center"><span class="text-xl mb-1">👤</span><span>Me</span></div>
+    </footer>
+
+    <script>
+        const grid = document.getElementById('tesla-grid');
+        
+        // Array of different Tesla-related keywords to ensure variety
+        const teslaVariations = [
+            "tesla-model-s", "tesla-model-3", "tesla-model-x", "tesla-model-y", 
+            "cybertruck", "tesla-interior", "tesla-roadster", "tesla-charging",
+            "tesla-wheel", "tesla-autopilot", "white-tesla", "black-tesla"
+        ];
+
+        const modelNames = ["Model S Plaid", "Cybertruck", "Model 3 Performance", "Model X Plaid", "Model Y LR"];
+
+        for (let i = 1; i <= 50; i++) {
+            const randomKeyword = teslaVariations[i % teslaVariations.length];
+            const randomModel = modelNames[Math.floor(Math.random() * modelNames.length)];
+            
+            // Using Unsplash Source with a random seed (i) to ensure each image is unique even with same keyword
+            const imageUrl = `https://images.unsplash.com/photo-1536700503339-1e4b06520771?auto=format&fit=crop&w=500&q=60&sig=${i}`;
+            // Alternative: use source.unsplash.com/featured/?tesla,${randomKeyword}&sig=${i}
+            
+            // To make it look even more varied, we'll swap between a few specific high-quality Tesla IDs
+            const specificIds = [
+                "1560958089-b8a1929cea89", "1617788138017-80ad40651399", 
+                "1619767886558-efdc259cde1a", "1620891549027-942fdc95d3f5",
+                "1536700503339-1e4b06520771", "1605816416998-df87ee13db48",
+                "1571127236794-81c0bbfe1ce3", "1612810806563-4cb8265db71f"
+            ];
+            const finalImg = `https://images.unsplash.com/photo-${specificIds[i % specificIds.length]}?w=500&q=80&sig=${i}`;
+
+            const card = document.createElement('div');
+            card.className = "reveal bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100";
+            card.innerHTML = `
+                <div class="h-40 md:h-52 relative bg-gray-200">
+                    <img src="${finalImg}" class="w-full h-full object-cover" alt="Tesla">
+                    <div class="absolute top-2 right-2 bg-orange-600 text-white text-[9px] font-black px-2 py-1 rounded">FREE</div>
+                </div>
+                <div class="p-3">
+                    <p class="text-xs font-bold text-gray-800 truncate">${randomModel} Edition</p>
+                    <div class="flex items-baseline gap-2 mt-1">
+                        <span class="text-lg font-black text-orange-600">$0.00</span>
+                        <span class="text-[10px] text-gray-400 line-through">$94,000</span>
+                    </div>
+                    <button class="w-full mt-3 bg-orange-600 text-white py-2 rounded-xl font-black text-[10px] uppercase pulse-orange">
+                        Claim Free
+                    </button>
+                </div>
+            `;
+            grid.appendChild(card);
+        }
+
+        // Scroll Animation Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
