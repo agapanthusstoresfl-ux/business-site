@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MegaWin | Free Giveaways</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-gray-100 pb-24">
 
+    <div class="bg-orange-600 text-white text-[10px] py-2 text-center font-bold uppercase tracking-widest">
+        ⚡️ Limited Time: 5 Free Gifts for New Users ⚡️
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-white p-4 shadow-sm">
+        <div class="flex items-center gap-3">
+            <h1 class="text-2xl font-black text-orange-600 italic">MegaWin</h1>
+            <div class="flex-1 bg-gray-100 rounded-full py-2 px-4 text-gray-400 text-sm">Search giveaways...</div>
+        </div>
+    </nav>
+
+    <div class="flex overflow-x-auto gap-8 p-4 bg-white no-scrollbar border-b">
+        <div class="flex-shrink-0 text-center"><div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-1">📱</div><span class="text-[10px]">Tech</span></div>
+        <div class="flex-shrink-0 text-center"><div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-1">👟</div><span class="text-[10px]">Shoes</span></div>
+        <div class="flex-shrink-0 text-center"><div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-1">🎮</div><span class="text-[10px]">Gaming</span></div>
+        <div class="flex-shrink-0 text-center"><div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-1">💄</div><span class="text-[10px]">Beauty</span></div>
+    </div>
+
+    <main class="p-3 grid grid-cols-2 gap-3 max-w-4xl mx-auto">
+        
+        <div class="reveal bg-white rounded-lg shadow-sm overflow-hidden border border-gray-50">
+            <div class="h-40 bg-gray-200 relative">
+                <img src="https://images.unsplash.com/photo-1605898835373-02344bcc579d?w=400" class="w-full h-full object-cover">
+                <div class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 font-bold rounded">FREE</div>
+            </div>
+            <div class="p-2">
+                <h3 class="text-xs font-medium h-8 overflow-hidden">PS5 Console Bundle + 2 Controllers</h3>
+                <div class="flex items-center gap-1 mt-1">
+                    <span class="text-orange-600 font-bold text-lg">$0.00</span>
+                    <span class="text-gray-400 line-through text-[10px]">$499</span>
+                </div>
+                <button class="w-full mt-2 bg-orange-600 text-white py-2 rounded font-bold text-xs uppercase">Claim Now</button>
+            </div>
+        </div>
+
+        <div class="reveal bg-white rounded-lg shadow-sm overflow-hidden border border-gray-50">
+            <div class="h-40 bg-gray-200 relative">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" class="w-full h-full object-cover">
+                <div class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 font-bold rounded">90% OFF</div>
+            </div>
+            <div class="p-2">
+                <h3 class="text-xs font-medium h-8 overflow-hidden">Nike Red Edition - Coupon Claim</h3>
+                <div class="flex items-center gap-1 mt-1">
+                    <span class="text-orange-600 font-bold text-lg">$5.00</span>
+                    <span class="text-gray-400 line-through text-[10px]">$120</span>
+                </div>
+                <button class="w-full mt-2 bg-orange-600 text-white py-2 rounded font-bold text-xs uppercase">Get Deal</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="fixed bottom-0 w-full bg-white border-t py-3 flex justify-around text-[10px] font-bold text-gray-500 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+        <div class="text-orange-600 flex flex-col items-center"><span>🏠</span><span>Home</span></div>
+        <div class="flex flex-col items-center"><span>🎁</span><span>Giveaways</span></div>
+        <div class="flex flex-col items-center"><span>👤</span><span>Account</span></div>
+    </footer>
+
+    <script>
+        // Simple Scroll Fade-In Script
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
